@@ -24,7 +24,7 @@ class TestACMEAccount(TestCase):  # pylint: disable=too-few-public-methods
         """Return the base ACME Account URL for the default API version"""
         return self.get_api_url()
 
-    def get_api_url(self, api_version="v1"):
+    def get_api_url(self, api_version="v2"):
         """Return the base ACME Account URL for a particular API version"""
         return f"{self.cfixt.base_url}/acme/{api_version}/account"
 
@@ -618,7 +618,7 @@ def _test_add_remove_domains_test_factory(func):
         ])
         request_domains = acme_data["domains"]
         response_domains = ["example.com"]
-        api_url = f"{self.get_acme_account_url(acme_id)}/domains"
+        api_url = f"{self.get_acme_account_url(acme_id)}/domain"
         if func.__name__.find("test_add") == 0:
             resp_key = "notAddedDomains"
         else:

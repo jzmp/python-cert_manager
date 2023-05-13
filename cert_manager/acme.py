@@ -26,13 +26,13 @@ class ACMEAccount(Endpoint):
         "position": "position",
     }
 
-    def __init__(self, client, api_version="v1"):
+    def __init__(self, client, api_version="v2"):
         """Initialize the class.
 
         Note: The *all* method will be run on object instantiation to fetch all acme accounts
 
         :param object client: An instantiated cert_manager.Client object
-        :param string api_version: The API version to use; the default is "v1"
+        :param string api_version: The API version to use; the default is "v2"
         """
         super().__init__(client=client, endpoint="/acme", api_version=api_version)
         self._api_url = self._url("/account")
@@ -169,7 +169,7 @@ class ACMEAccount(Endpoint):
                 for domain in domains
             ]
         }
-        url = self._url(f"/{acme_id}/domains")
+        url = self._url(f"/{acme_id}/domain")
         result = self._client.post(url, data=data)
 
         return result.json()
@@ -188,7 +188,7 @@ class ACMEAccount(Endpoint):
                 for domain in domains
             ]
         }
-        url = self._url(f"/{acme_id}/domains")
+        url = self._url(f"/{acme_id}/domain")
         # Client().delete does not accept json, so work around it
         result = self._client.session.request("DELETE", url, json=data)
         result.raise_for_status()
