@@ -18,6 +18,7 @@ There are many API endpoints under Certificate Manager, and this library current
 * Client Administrator (/admin)
 * Domain (/domain)
 * Report (/report)
+* Sectigo Public ACME (/acme)
 
 Other endpoints we hope to add in the near future:
 
@@ -30,7 +31,7 @@ Other endpoints we hope to add in the near future:
 
 ## Installing
 
-You can use pip to install cert_manager:
+You can use pip to install `cert_manager`:
 
 ```sh
 pip install cert_manager
