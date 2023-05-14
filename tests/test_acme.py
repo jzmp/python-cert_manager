@@ -39,11 +39,9 @@ class TestACMEAccount(TestCase):  # pylint: disable=too-few-public-methods
                 return entry
         raise KeyError(f"id {acme_id} not found in valid_response")
 
-    def get_acme_account_data(self, acme_id, domains=None):
-        """Return a matching entry from valid_response as ACME account data,
-        i.e. with SCM domains (empty by default)"""
+    def get_acme_account_data(self, acme_id):
+        """Return a matching entry from valid_response as ACME account data"""
         valid_response = self.get_valid_response_entry(acme_id).copy()
-        valid_response.setdefault("domains", domains or [])
         return valid_response
 
     def setUp(self):  # pylint: disable=invalid-name
