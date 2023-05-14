@@ -194,3 +194,20 @@ class ACMEAccount(Endpoint):
         result.raise_for_status()
 
         return result.json()
+
+    @paginate
+    def get_domains(self, acme_id, **kwargs):
+        """Return a list with acme account's domains.
+
+        :param int acme_id: The ID of the acme account to query
+        :param dict kwargs: A dictionary of additional arguments to pass to the API
+
+        Any other List ACME account's domains request parameters can be provided as
+        keyword arguments.
+
+        :return dict: A dictionary containing a list of domains
+        """
+        url = self._url(f"/{acme_id}/domain")
+        result = self._client.get(url, params=kwargs)
+
+        return result.json()
